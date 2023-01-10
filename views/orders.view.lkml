@@ -33,9 +33,58 @@ view: orders {
     sql: ${TABLE}.user_id ;;
   }
 
+  measure: testing {
+    type: string
+    case: {
+      when: {
+        sql: ${status} = "pending" then ${count} ;;
+        label: "pending"
+      }
+      when: {
+        sql: ${users.city} = "Adel" then ${user_id} ;;
+      }
+      else: "unknown"
+    }
+  }
+
+
+  dimension: product_description {
+    type: string
+    sql:
+
+      CASE
+      WHEN ${status} = "pending" THEN "ABC"
+
+
+      WHEN ${users.city} = "Adel" THEN "xyz"
+
+
+      ELSE "other"
+
+
+      END ;;
+
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+
+  measure: mes1 {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
+  measure: mes2{
+    type: count_distinct
+    sql: ${id} ;;
+  }
+
+  measure: testing2 {
+    type: number
+    sql: 100*(${mes1}/nullif(${mes2}, 0)) ;;
   }
 
   # ----- Sets of fields for drilling ------

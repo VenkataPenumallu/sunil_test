@@ -233,7 +233,13 @@ explore: xin_test_for_bug2 {}
 
 explore: xss_test {}
 
-explore: xss_test_1 {}
+explore: xss_test_1 {
+  join: xss_test_10 {
+    type: left_outer
+    sql_on:  ;;
+  relationship:many_to_one
+  }
+}
 
 explore: xss_test_10 {}
 
