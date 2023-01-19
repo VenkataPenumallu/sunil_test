@@ -20,6 +20,19 @@ view: order_items {
     sql: ${TABLE}.order_id ;;
   }
 
+  dimension: testing {
+    case: {
+      when: {
+        sql: ${TABLE} = pending ;;
+        label: "pending"
+      }
+      when: {
+        sql: ${TABLE}.order_id = 4 ;;
+      }
+      else: "unknown"
+    }
+  }
+
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;

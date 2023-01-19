@@ -2,6 +2,9 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/special_characters.dashboard.lookml"
+include: "/special.dashboard.lookml"
+include: "/Test.dashboard.lookml"
 
 datagroup: sunil_test_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -233,7 +236,13 @@ explore: xin_test_for_bug2 {}
 
 explore: xss_test {}
 
-explore: xss_test_1 {}
+explore: xss_test_1 {
+  join: xss_test_10 {
+    type: left_outer
+    sql_on:  ;;
+  relationship:many_to_one
+  }
+}
 
 explore: xss_test_10 {}
 
