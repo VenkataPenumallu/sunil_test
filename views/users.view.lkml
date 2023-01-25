@@ -13,9 +13,27 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
+  dimension: id2 {
+    type: number
+    value_format: "0.00"
+    sql: ${age}*${id} ;;
+  }
+
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+  }
+
+  parameter: home {
+    type: string
+    allowed_value: {
+      label: "Decimal_0"
+      value: "decimal_0"
+    }
+    allowed_value: {
+      label: "Decimal_2"
+      value: "decimal_2"
+    }
   }
 
   dimension: country {
@@ -68,10 +86,25 @@ view: users {
     sql: ${TABLE}.zip ;;
   }
 
+  measure: testing {
+    label: "first attempt"
+    group_label: "Time"
+    type: sum
+   description: "testing the functionality"
+   sql:{% if home._parameter_value == 'decimal_2' %}
+      ${age}
+     {% elsif home._parameter_value == 'decimal_0' %}
+      ${id2}
+     {% else %}
+      ${city}
+     {% endif %};;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
   }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

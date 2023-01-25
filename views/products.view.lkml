@@ -42,6 +42,12 @@ view: products {
     type: string
     sql: ${TABLE}.sku ;;
   }
+  measure: total_usd {
+    label: "Total USD"
+    type: sum
+    value_format: "$0.00"
+    sql: ${retail_price} ;;
+  }
 
   measure: count {
     type: count
