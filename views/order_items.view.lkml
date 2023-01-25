@@ -6,11 +6,15 @@ view: order_items {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    link: {
+      label: "Test of link"
+      url: "https://gcps2220.cloud.looker.com/explore/sunil_test/order_items?qid=IulDT1efiDlXrwdWfvVRfa"
+    }
   }
 
   dimension: inventory_item_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
   }
 
