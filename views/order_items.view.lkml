@@ -28,9 +28,11 @@ view: order_items {
       }
       when: {
         sql: ${TABLE}.order_id = 4 ;;
+        label: "apple"
       }
       else: "unknown"
     }
+    alpha_sort: yes
   }
 
   dimension: phone {
@@ -62,6 +64,11 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+  filter: year_filter {
+    type: date
+    sql: ${returned_year} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
@@ -70,6 +77,8 @@ view: order_items {
     type: sum
     sql: ${sale_price} ;;
   }
+
+
   measure: average_sale_price {
     type: average
     sql: ${sale_price} ;;
