@@ -93,6 +93,7 @@ view: orders {
 
   measure: mes1 {
     type: count_distinct
+    filters: [status: "pending"]
     sql: ${user_id} ;;
   }
 
@@ -104,6 +105,15 @@ view: orders {
   measure: testing2 {
     type: number
     sql: 100*(${mes1}/nullif(${mes2}, 0)) ;;
+  }
+
+  measure: liquid_if {
+    type: count_distinct
+    sql: {% if users.city._in_query %}
+         {orders.status}
+         {% else %}
+         ${created_time}
+         {% endif %} ;;
   }
 
   # ----- Sets of fields for drilling ------
