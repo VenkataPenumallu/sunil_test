@@ -8,6 +8,16 @@ view: orders {
     sql: ${TABLE}.id ;;
   }
 
+  parameter: Date_drilldown {
+    hidden: no
+    group_label: "Date Drilldown"
+    allowed_value: {label:"No Selection" value:"No Selection"}
+    allowed_value: {label:"Daily" value:"date"}
+    allowed_value: {label:"Weekly" value:"week"}
+    allowed_value: {label:"Monthly" value:"month"}
+  }
+
+
   dimension_group: created {
     type: time
     timeframes: [
@@ -21,6 +31,15 @@ view: orders {
     ]
     sql: ${TABLE}.created_at ;;
   }
+
+
+
+  dimension: no_select {
+    type: string
+    hidden: yes
+    sql: null ;;
+  }
+
 
   dimension: status {
     type: string

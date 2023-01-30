@@ -24,6 +24,16 @@ view: users {
     sql: ${TABLE}.country ;;
   }
 
+  dimension: week1 {
+    type: date
+    sql: ${TABLE}.created_at ;;
+  }
+
+  dimension: week2 {
+    datatype: date
+    sql: ${TABLE}.created_at ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [
@@ -36,7 +46,16 @@ view: users {
       year
     ]
     sql: ${TABLE}.created_at ;;
+
   }
+  dimension: created_week_of_quarter {
+    type: number
+    label: "Week of Quarter Created"
+    view_label: "Opportunity Stages"
+    group_label: "Created Date"
+    sql: WEEK(${TABLE}.created_at) - DATEDIFF( week,DATE_TRUNC(YEAR ,${TABLE}.created_at),DATE_TRUNC(QUARTER ,${TABLE}.created_at)) ;;
+  }
+
 
   dimension: email {
     type: string
