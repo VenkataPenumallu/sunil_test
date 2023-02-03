@@ -35,9 +35,7 @@
     hidden_pivots: {}
     series_types: {}
     defaults_version: 1
-    listen:
-      Created Year: inventory_items.created_year
-      Created Quarter: inventory_items.created_quarter
+    listen: {}
     row: 0
     col: 0
     width: 24
@@ -72,39 +70,8 @@
     hidden_pivots: {}
     series_types: {}
     defaults_version: 1
-    listen:
-      Created Year: inventory_items.created_year
-      Created Quarter: inventory_items.created_quarter
-    row:
-    col:
-    width:
-    height:
-  filters:
-  - name: Created Year
-    title: Created Year
-    type: field_filter
-    default_value: 10 year
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: advanced
-      display: popover
-      options: []
-    model: sunil_test
-    explore: order_items_vijaya
-    listens_to_filters: []
-    field: inventory_items.created_year
-  - name: Created Quarter
-    title: Created Quarter
-    type: field_filter
-    default_value: 4 quarter
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: advanced
-      display: popover
-      options: []
-    model: sunil_test
-    explore: order_items_vijaya
-    listens_to_filters: []
-    field: inventory_items.created_quarter
+    listen: {}
+    row: 12
+    col: 0
+    width: 8
+    height: 6
