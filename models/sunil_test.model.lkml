@@ -5,6 +5,7 @@ include: "/views/**/*.view"
 include: "/special_characters.dashboard.lookml"
 include: "/special.dashboard.lookml"
 include: "/Test.dashboard.lookml"
+include: "/Lookml_Dashboard_PDF_rendering_testing.dashboard.lookml"
 
 datagroup: sunil_test_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;

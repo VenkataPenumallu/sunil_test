@@ -1,5 +1,9 @@
 view: orders {
   sql_table_name: demo_db.orders ;;
+  filter: year {
+    type: date
+    sql: ${created_year} ;;
+  }
   drill_fields: [id]
 
   dimension: id {
@@ -33,42 +37,35 @@ view: orders {
     sql: ${TABLE}.user_id ;;
   }
 
-  measure: testing {
+  dimension: testing {
+    group_label: "sample"
     type: string
     case: {
       when: {
-        sql: ${status} = "pending" then ${count} ;;
+        sql: ${status} = "pending" ;;
         label: "pending"
       }
       when: {
-        sql: ${users.city} = "Adel" then ${user_id} ;;
+        sql: ${status}=  "complete";;
+        label: "apple"
       }
       else: "unknown"
     }
+    alpha_sort: yes
   }
 
-
-  dimension: product_description {
-    type: string
-    sql:
-
-      CASE
-      WHEN ${status} = "pending" THEN "ABC"
-
-
-      WHEN ${users.city} = "Adel" THEN "xyz"
-
-
-      ELSE "other"
-
-
-      END ;;
-
-  }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: likitha {
+    label: "{{_filters['year']}}"
+    type: sum
+    sql: ${id} ;;
+    value_format: "$#,##0"
+    filters: [status: "pending"]
   }
 
 

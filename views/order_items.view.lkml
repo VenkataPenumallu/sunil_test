@@ -6,11 +6,15 @@ view: order_items {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    link: {
+      label: "Test of link"
+      url: "https://gcps2220.cloud.looker.com/explore/sunil_test/order_items?qid=IulDT1efiDlXrwdWfvVRfa"
+    }
   }
 
   dimension: inventory_item_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
   }
 
@@ -29,9 +33,11 @@ view: order_items {
       }
       when: {
         sql: ${TABLE}.order_id = 4 ;;
+        label: "apple"
       }
       else: "unknown"
     }
+    alpha_sort: yes
   }
 
   dimension: phone {
@@ -63,6 +69,11 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+  filter: year_filter {
+    type: date
+    sql: ${returned_year} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
@@ -71,6 +82,8 @@ view: order_items {
     type: sum
     sql: ${sale_price} ;;
   }
+
+
   measure: average_sale_price {
     type: average
     sql: ${sale_price} ;;

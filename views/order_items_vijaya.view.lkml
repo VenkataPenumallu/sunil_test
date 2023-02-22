@@ -32,6 +32,10 @@ view: order_items_vijaya {
     ]
     sql: ${TABLE}.returned_at ;;
   }
+  dimension: raw_timeframe {
+    type: date_raw
+    sql: ${returned_raw} ;;
+  }
 
   dimension: sale_price {
     type: number
